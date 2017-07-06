@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewReservaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewReservaLabel_codigoReserva}"/>
+                    <h:outputText value="#{reservaController.selected.codigoReserva}" title="#{bundle.ViewReservaTitle_codigoReserva}"/>
+                    <h:outputText value="#{bundle.ViewReservaLabel_fechaReserva}"/>
+                    <h:outputText value="#{reservaController.selected.fechaReserva}" title="#{bundle.ViewReservaTitle_fechaReserva}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewReservaLabel_comentario}"/>
+                    <h:outputText value="#{reservaController.selected.comentario}" title="#{bundle.ViewReservaTitle_comentario}"/>
+                    <h:outputText value="#{bundle.ViewReservaLabel_usuarioDocumento}"/>
+                    <h:outputText value="#{reservaController.selected.usuarioDocumento}" title="#{bundle.ViewReservaTitle_usuarioDocumento}"/>
+                    <h:outputText value="#{bundle.ViewReservaLabel_codigoMesa}"/>
+                    <h:outputText value="#{reservaController.selected.codigoMesa}" title="#{bundle.ViewReservaTitle_codigoMesa}"/>
+                    <h:outputText value="#{bundle.ViewReservaLabel_ordenCodigoOrden}"/>
+                    <h:outputText value="#{reservaController.selected.ordenCodigoOrden}" title="#{bundle.ViewReservaTitle_ordenCodigoOrden}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{reservaController.destroyAndView}" value="#{bundle.ViewReservaDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewReservaEditLink}"/>
+                <br />
+                <h:commandLink action="#{reservaController.prepareCreate}" value="#{bundle.ViewReservaCreateLink}" />
+                <br />
+                <h:commandLink action="#{reservaController.prepareList}" value="#{bundle.ViewReservaShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewReservaIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditMenuTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditMenuLabel_codigoMenu}" for="codigoMenu" />
+                    <h:inputText id="codigoMenu" value="#{menuController.selected.codigoMenu}" title="#{bundle.EditMenuTitle_codigoMenu}" required="true" requiredMessage="#{bundle.EditMenuRequiredMessage_codigoMenu}"/>
+                    <h:outputLabel value="#{bundle.EditMenuLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{menuController.selected.nombre}" title="#{bundle.EditMenuTitle_nombre}" required="true" requiredMessage="#{bundle.EditMenuRequiredMessage_nombre}"/>
+                    <h:outputLabel value="#{bundle.EditMenuLabel_precio}" for="precio" />
+                    <h:inputText id="precio" value="#{menuController.selected.precio}" title="#{bundle.EditMenuTitle_precio}" required="true" requiredMessage="#{bundle.EditMenuRequiredMessage_precio}"/>
+                    <h:outputLabel value="#{bundle.EditMenuLabel_descripcion}" for="descripcion" />
+                    <h:inputText id="descripcion" value="#{menuController.selected.descripcion}" title="#{bundle.EditMenuTitle_descripcion}" />
+                    <h:outputLabel value="#{bundle.EditMenuLabel_imagen}" for="imagen" />
+                    <h:inputText id="imagen" value="#{menuController.selected.imagen}" title="#{bundle.EditMenuTitle_imagen}" />
+                    <h:outputLabel value="#{bundle.EditMenuLabel_estado}" for="estado" />
+                    <h:inputText id="estado" value="#{menuController.selected.estado}" title="#{bundle.EditMenuTitle_estado}" />
+                    <h:outputLabel value="#{bundle.EditMenuLabel_codigoEstablecimiento}" for="codigoEstablecimiento" />
+                    <h:selectOneMenu id="codigoEstablecimiento" value="#{menuController.selected.codigoEstablecimiento}" title="#{bundle.EditMenuTitle_codigoEstablecimiento}" required="true" requiredMessage="#{bundle.EditMenuRequiredMessage_codigoEstablecimiento}">
+                        <f:selectItems value="#{establecimientoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{menuController.update}" value="#{bundle.EditMenuSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditMenuViewLink}"/>
+                <br />
+                <h:commandLink action="#{menuController.prepareList}" value="#{bundle.EditMenuShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditMenuIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

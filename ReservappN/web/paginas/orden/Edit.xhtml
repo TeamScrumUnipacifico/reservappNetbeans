@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditOrdenTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditOrdenLabel_codigoOrden}" for="codigoOrden" />
+                    <h:inputText id="codigoOrden" value="#{ordenController.selected.codigoOrden}" title="#{bundle.EditOrdenTitle_codigoOrden}" required="true" requiredMessage="#{bundle.EditOrdenRequiredMessage_codigoOrden}"/>
+                    <h:outputLabel value="#{bundle.EditOrdenLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{ordenController.selected.nombre}" title="#{bundle.EditOrdenTitle_nombre}" required="true" requiredMessage="#{bundle.EditOrdenRequiredMessage_nombre}"/>
+                    <h:outputLabel value="#{bundle.EditOrdenLabel_precio}" for="precio" />
+                    <h:inputText id="precio" value="#{ordenController.selected.precio}" title="#{bundle.EditOrdenTitle_precio}" required="true" requiredMessage="#{bundle.EditOrdenRequiredMessage_precio}"/>
+                    <h:outputLabel value="#{bundle.EditOrdenLabel_descripcion}" for="descripcion" />
+                    <h:inputText id="descripcion" value="#{ordenController.selected.descripcion}" title="#{bundle.EditOrdenTitle_descripcion}" />
+                    <h:outputLabel value="#{bundle.EditOrdenLabel_imagen}" for="imagen" />
+                    <h:inputText id="imagen" value="#{ordenController.selected.imagen}" title="#{bundle.EditOrdenTitle_imagen}" />
+                    <h:outputLabel value="#{bundle.EditOrdenLabel_estado}" for="estado" />
+                    <h:inputText id="estado" value="#{ordenController.selected.estado}" title="#{bundle.EditOrdenTitle_estado}" />
+                    <h:outputLabel value="#{bundle.EditOrdenLabel_menuCodigoMenu}" for="menuCodigoMenu" />
+                    <h:selectOneMenu id="menuCodigoMenu" value="#{ordenController.selected.menuCodigoMenu}" title="#{bundle.EditOrdenTitle_menuCodigoMenu}" required="true" requiredMessage="#{bundle.EditOrdenRequiredMessage_menuCodigoMenu}">
+                        <f:selectItems value="#{menuController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{ordenController.update}" value="#{bundle.EditOrdenSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditOrdenViewLink}"/>
+                <br />
+                <h:commandLink action="#{ordenController.prepareList}" value="#{bundle.EditOrdenShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditOrdenIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

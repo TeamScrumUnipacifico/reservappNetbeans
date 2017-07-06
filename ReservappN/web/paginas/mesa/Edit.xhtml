@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditMesaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditMesaLabel_codigoMesa}" for="codigoMesa" />
+                    <h:inputText id="codigoMesa" value="#{mesaController.selected.codigoMesa}" title="#{bundle.EditMesaTitle_codigoMesa}" required="true" requiredMessage="#{bundle.EditMesaRequiredMessage_codigoMesa}"/>
+                    <h:outputLabel value="#{bundle.EditMesaLabel_puestos}" for="puestos" />
+                    <h:inputText id="puestos" value="#{mesaController.selected.puestos}" title="#{bundle.EditMesaTitle_puestos}" required="true" requiredMessage="#{bundle.EditMesaRequiredMessage_puestos}"/>
+                    <h:outputLabel value="#{bundle.EditMesaLabel_ubicacion}" for="ubicacion" />
+                    <h:inputText id="ubicacion" value="#{mesaController.selected.ubicacion}" title="#{bundle.EditMesaTitle_ubicacion}" />
+                    <h:outputLabel value="#{bundle.EditMesaLabel_estado}" for="estado" />
+                    <h:inputText id="estado" value="#{mesaController.selected.estado}" title="#{bundle.EditMesaTitle_estado}" />
+                    <h:outputLabel value="#{bundle.EditMesaLabel_codigoEstablecimiento}" for="codigoEstablecimiento" />
+                    <h:selectOneMenu id="codigoEstablecimiento" value="#{mesaController.selected.codigoEstablecimiento}" title="#{bundle.EditMesaTitle_codigoEstablecimiento}" required="true" requiredMessage="#{bundle.EditMesaRequiredMessage_codigoEstablecimiento}">
+                        <f:selectItems value="#{establecimientoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{mesaController.update}" value="#{bundle.EditMesaSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditMesaViewLink}"/>
+                <br />
+                <h:commandLink action="#{mesaController.prepareList}" value="#{bundle.EditMesaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditMesaIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

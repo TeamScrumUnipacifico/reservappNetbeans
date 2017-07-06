@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditFacturaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditFacturaLabel_codigoFactura}" for="codigoFactura" />
+                    <h:inputText id="codigoFactura" value="#{facturaController.selected.codigoFactura}" title="#{bundle.EditFacturaTitle_codigoFactura}" required="true" requiredMessage="#{bundle.EditFacturaRequiredMessage_codigoFactura}"/>
+                    <h:outputLabel value="#{bundle.EditFacturaLabel_metodoPago}" for="metodoPago" />
+                    <h:inputText id="metodoPago" value="#{facturaController.selected.metodoPago}" title="#{bundle.EditFacturaTitle_metodoPago}" />
+                    <h:outputLabel value="#{bundle.EditFacturaLabel_valorTotal}" for="valorTotal" />
+                    <h:inputText id="valorTotal" value="#{facturaController.selected.valorTotal}" title="#{bundle.EditFacturaTitle_valorTotal}" />
+                    <h:outputLabel value="#{bundle.EditFacturaLabel_estadoPago}" for="estadoPago" />
+                    <h:inputText id="estadoPago" value="#{facturaController.selected.estadoPago}" title="#{bundle.EditFacturaTitle_estadoPago}" />
+                    <h:outputLabel value="#{bundle.EditFacturaLabel_codigoReserva}" for="codigoReserva" />
+                    <h:selectOneMenu id="codigoReserva" value="#{facturaController.selected.codigoReserva}" title="#{bundle.EditFacturaTitle_codigoReserva}" required="true" requiredMessage="#{bundle.EditFacturaRequiredMessage_codigoReserva}">
+                        <f:selectItems value="#{reservaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{facturaController.update}" value="#{bundle.EditFacturaSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditFacturaViewLink}"/>
+                <br />
+                <h:commandLink action="#{facturaController.prepareList}" value="#{bundle.EditFacturaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditFacturaIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateReservaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateReservaLabel_codigoReserva}" for="codigoReserva" />
+                    <h:inputText id="codigoReserva" value="#{reservaController.selected.codigoReserva}" title="#{bundle.CreateReservaTitle_codigoReserva}" required="true" requiredMessage="#{bundle.CreateReservaRequiredMessage_codigoReserva}"/>
+                    <h:outputLabel value="#{bundle.CreateReservaLabel_fechaReserva}" for="fechaReserva" />
+                    <h:inputText id="fechaReserva" value="#{reservaController.selected.fechaReserva}" title="#{bundle.CreateReservaTitle_fechaReserva}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateReservaLabel_comentario}" for="comentario" />
+                    <h:inputText id="comentario" value="#{reservaController.selected.comentario}" title="#{bundle.CreateReservaTitle_comentario}" />
+                    <h:outputLabel value="#{bundle.CreateReservaLabel_usuarioDocumento}" for="usuarioDocumento" />
+                    <h:inputText id="usuarioDocumento" value="#{reservaController.selected.usuarioDocumento}" title="#{bundle.CreateReservaTitle_usuarioDocumento}" />
+                    <h:outputLabel value="#{bundle.CreateReservaLabel_codigoMesa}" for="codigoMesa" />
+                    <h:selectOneMenu id="codigoMesa" value="#{reservaController.selected.codigoMesa}" title="#{bundle.CreateReservaTitle_codigoMesa}" >
+                        <f:selectItems value="#{mesaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateReservaLabel_ordenCodigoOrden}" for="ordenCodigoOrden" />
+                    <h:selectOneMenu id="ordenCodigoOrden" value="#{reservaController.selected.ordenCodigoOrden}" title="#{bundle.CreateReservaTitle_ordenCodigoOrden}" >
+                        <f:selectItems value="#{ordenController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{reservaController.create}" value="#{bundle.CreateReservaSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{reservaController.prepareList}" value="#{bundle.CreateReservaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateReservaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewMenuTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewMenuLabel_codigoMenu}"/>
+                    <h:outputText value="#{menuController.selected.codigoMenu}" title="#{bundle.ViewMenuTitle_codigoMenu}"/>
+                    <h:outputText value="#{bundle.ViewMenuLabel_nombre}"/>
+                    <h:outputText value="#{menuController.selected.nombre}" title="#{bundle.ViewMenuTitle_nombre}"/>
+                    <h:outputText value="#{bundle.ViewMenuLabel_precio}"/>
+                    <h:outputText value="#{menuController.selected.precio}" title="#{bundle.ViewMenuTitle_precio}"/>
+                    <h:outputText value="#{bundle.ViewMenuLabel_descripcion}"/>
+                    <h:outputText value="#{menuController.selected.descripcion}" title="#{bundle.ViewMenuTitle_descripcion}"/>
+                    <h:outputText value="#{bundle.ViewMenuLabel_imagen}"/>
+                    <h:outputText value="#{menuController.selected.imagen}" title="#{bundle.ViewMenuTitle_imagen}"/>
+                    <h:outputText value="#{bundle.ViewMenuLabel_estado}"/>
+                    <h:outputText value="#{menuController.selected.estado}" title="#{bundle.ViewMenuTitle_estado}"/>
+                    <h:outputText value="#{bundle.ViewMenuLabel_codigoEstablecimiento}"/>
+                    <h:outputText value="#{menuController.selected.codigoEstablecimiento}" title="#{bundle.ViewMenuTitle_codigoEstablecimiento}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{menuController.destroyAndView}" value="#{bundle.ViewMenuDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewMenuEditLink}"/>
+                <br />
+                <h:commandLink action="#{menuController.prepareCreate}" value="#{bundle.ViewMenuCreateLink}" />
+                <br />
+                <h:commandLink action="#{menuController.prepareList}" value="#{bundle.ViewMenuShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewMenuIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

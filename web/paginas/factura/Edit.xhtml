@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="FacturaEditDlg" widgetVar="FacturaEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditFacturaTitle}">
+            <h:form id="FacturaEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{facturaController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditFacturaLabel_codigoFactura}" for="codigoFactura" />
+                        <p:inputText id="codigoFactura" value="#{facturaController.selected.codigoFactura}" title="#{bundle.EditFacturaTitle_codigoFactura}" required="true" requiredMessage="#{bundle.EditFacturaRequiredMessage_codigoFactura}"/>
+                        <p:outputLabel value="#{bundle.EditFacturaLabel_metodoPago}" for="metodoPago" />
+                        <p:inputText id="metodoPago" value="#{facturaController.selected.metodoPago}" title="#{bundle.EditFacturaTitle_metodoPago}" />
+                        <p:outputLabel value="#{bundle.EditFacturaLabel_valorTotal}" for="valorTotal" />
+                        <p:inputText id="valorTotal" value="#{facturaController.selected.valorTotal}" title="#{bundle.EditFacturaTitle_valorTotal}" />
+                        <p:outputLabel value="#{bundle.EditFacturaLabel_estadoPago}" for="estadoPago" />
+                        <p:selectBooleanCheckbox id="estadoPago" value="#{facturaController.selected.estadoPago}" />
+                        <p:outputLabel value="#{bundle.EditFacturaLabel_codigoReserva}" for="codigoReserva" />
+                        <p:selectOneMenu id="codigoReserva" value="#{facturaController.selected.codigoReserva}" required="true" requiredMessage="#{bundle.EditFacturaRequiredMessage_codigoReserva}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{reservaController.itemsAvailableSelectOne}"
+                                           var="codigoReservaItem"
+                                           itemValue="#{codigoReservaItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{facturaController.update}" value="#{bundle.Save}" update="display,:FacturaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'FacturaEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="FacturaEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

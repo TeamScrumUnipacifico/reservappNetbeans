@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MenuCreateDlg" widgetVar="MenuCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateMenuTitle}">
+            <h:form id="MenuCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{menuController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateMenuLabel_codigoMenu}" for="codigoMenu" />
+                        <p:inputText id="codigoMenu" value="#{menuController.selected.codigoMenu}" title="#{bundle.CreateMenuTitle_codigoMenu}" required="true" requiredMessage="#{bundle.CreateMenuRequiredMessage_codigoMenu}"/>
+                        <p:outputLabel value="#{bundle.CreateMenuLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{menuController.selected.nombre}" title="#{bundle.CreateMenuTitle_nombre}" required="true" requiredMessage="#{bundle.CreateMenuRequiredMessage_nombre}"/>
+                        <p:outputLabel value="#{bundle.CreateMenuLabel_precio}" for="precio" />
+                        <p:inputText id="precio" value="#{menuController.selected.precio}" title="#{bundle.CreateMenuTitle_precio}" required="true" requiredMessage="#{bundle.CreateMenuRequiredMessage_precio}"/>
+                        <p:outputLabel value="#{bundle.CreateMenuLabel_descripcion}" for="descripcion" />
+                        <p:inputText id="descripcion" value="#{menuController.selected.descripcion}" title="#{bundle.CreateMenuTitle_descripcion}" />
+                        <p:outputLabel value="#{bundle.CreateMenuLabel_imagen}" for="imagen" />
+                        <p:inputText id="imagen" value="#{menuController.selected.imagen}" title="#{bundle.CreateMenuTitle_imagen}" />
+                        <p:outputLabel value="#{bundle.CreateMenuLabel_estado}" for="estado" />
+                        <p:inputText id="estado" value="#{menuController.selected.estado}" title="#{bundle.CreateMenuTitle_estado}" />
+                        <p:outputLabel value="#{bundle.CreateMenuLabel_codigoEstablecimiento}" for="codigoEstablecimiento" />
+                        <p:selectOneMenu id="codigoEstablecimiento" value="#{menuController.selected.codigoEstablecimiento}" required="true" requiredMessage="#{bundle.EditMenuRequiredMessage_codigoEstablecimiento}">
+                            <f:selectItems value="#{establecimientoController.itemsAvailableSelectOne}"
+                                           var="codigoEstablecimientoItem"
+                                           itemValue="#{codigoEstablecimientoItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{menuController.create}" value="#{bundle.Save}" update="display,:MenuListForm:datalist,:growl" oncomplete="handleSubmit(args,'MenuCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="MenuCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

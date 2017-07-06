@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MesaCreateDlg" widgetVar="MesaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateMesaTitle}">
+            <h:form id="MesaCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{mesaController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateMesaLabel_codigoMesa}" for="codigoMesa" />
+                        <p:inputText id="codigoMesa" value="#{mesaController.selected.codigoMesa}" title="#{bundle.CreateMesaTitle_codigoMesa}" required="true" requiredMessage="#{bundle.CreateMesaRequiredMessage_codigoMesa}"/>
+                        <p:outputLabel value="#{bundle.CreateMesaLabel_puestos}" for="puestos" />
+                        <p:inputText id="puestos" value="#{mesaController.selected.puestos}" title="#{bundle.CreateMesaTitle_puestos}" required="true" requiredMessage="#{bundle.CreateMesaRequiredMessage_puestos}"/>
+                        <p:outputLabel value="#{bundle.CreateMesaLabel_ubicacion}" for="ubicacion" />
+                        <p:inputText id="ubicacion" value="#{mesaController.selected.ubicacion}" title="#{bundle.CreateMesaTitle_ubicacion}" />
+                        <p:outputLabel value="#{bundle.CreateMesaLabel_estado}" for="estado" />
+                        <p:selectBooleanCheckbox id="estado" value="#{mesaController.selected.estado}" />
+                        <p:outputLabel value="#{bundle.CreateMesaLabel_codigoEstablecimiento}" for="codigoEstablecimiento" />
+                        <p:selectOneMenu id="codigoEstablecimiento" value="#{mesaController.selected.codigoEstablecimiento}" required="true" requiredMessage="#{bundle.EditMesaRequiredMessage_codigoEstablecimiento}">
+                            <f:selectItems value="#{establecimientoController.itemsAvailableSelectOne}"
+                                           var="codigoEstablecimientoItem"
+                                           itemValue="#{codigoEstablecimientoItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{mesaController.create}" value="#{bundle.Save}" update="display,:MesaListForm:datalist,:growl" oncomplete="handleSubmit(args,'MesaCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="MesaCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

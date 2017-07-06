@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="FacturaViewDlg" widgetVar="FacturaViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewFacturaTitle}">
+            <h:form id="FacturaViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{facturaController.selected != null}">
+                        <h:outputText value="#{bundle.ViewFacturaLabel_codigoFactura}"/>
+                        <h:outputText value="#{facturaController.selected.codigoFactura}" title="#{bundle.ViewFacturaTitle_codigoFactura}"/>
+                        <h:outputText value="#{bundle.ViewFacturaLabel_metodoPago}"/>
+                        <h:outputText value="#{facturaController.selected.metodoPago}" title="#{bundle.ViewFacturaTitle_metodoPago}"/>
+                        <h:outputText value="#{bundle.ViewFacturaLabel_valorTotal}"/>
+                        <h:outputText value="#{facturaController.selected.valorTotal}" title="#{bundle.ViewFacturaTitle_valorTotal}"/>
+                        <h:outputText value="#{bundle.ViewFacturaLabel_estadoPago}"/>
+                        <p:selectBooleanCheckbox value="#{facturaController.selected.estadoPago}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewFacturaLabel_codigoReserva}"/>
+                        <h:outputText value="#{facturaController.selected.codigoReserva}" title="#{bundle.ViewFacturaTitle_codigoReserva}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="FacturaViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

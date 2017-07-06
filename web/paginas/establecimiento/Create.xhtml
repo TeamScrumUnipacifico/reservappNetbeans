@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EstablecimientoCreateDlg" widgetVar="EstablecimientoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateEstablecimientoTitle}">
+            <h:form id="EstablecimientoCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{establecimientoController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateEstablecimientoLabel_codigoEstablecimiento}" for="codigoEstablecimiento" />
+                        <p:inputText id="codigoEstablecimiento" value="#{establecimientoController.selected.codigoEstablecimiento}" title="#{bundle.CreateEstablecimientoTitle_codigoEstablecimiento}" required="true" requiredMessage="#{bundle.CreateEstablecimientoRequiredMessage_codigoEstablecimiento}"/>
+                        <p:outputLabel value="#{bundle.CreateEstablecimientoLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{establecimientoController.selected.nombre}" title="#{bundle.CreateEstablecimientoTitle_nombre}" />
+                        <p:outputLabel value="#{bundle.CreateEstablecimientoLabel_nit}" for="nit" />
+                        <p:inputText id="nit" value="#{establecimientoController.selected.nit}" title="#{bundle.CreateEstablecimientoTitle_nit}" required="true" requiredMessage="#{bundle.CreateEstablecimientoRequiredMessage_nit}"/>
+                        <p:outputLabel value="#{bundle.CreateEstablecimientoLabel_direccion}" for="direccion" />
+                        <p:inputText id="direccion" value="#{establecimientoController.selected.direccion}" title="#{bundle.CreateEstablecimientoTitle_direccion}" />
+                        <p:outputLabel value="#{bundle.CreateEstablecimientoLabel_correo}" for="correo" />
+                        <p:inputText id="correo" value="#{establecimientoController.selected.correo}" title="#{bundle.CreateEstablecimientoTitle_correo}" />
+                        <p:outputLabel value="#{bundle.CreateEstablecimientoLabel_telefono}" for="telefono" />
+                        <p:inputText id="telefono" value="#{establecimientoController.selected.telefono}" title="#{bundle.CreateEstablecimientoTitle_telefono}" />
+                        <p:outputLabel value="#{bundle.CreateEstablecimientoLabel_longitud}" for="longitud" />
+                        <p:inputText id="longitud" value="#{establecimientoController.selected.longitud}" title="#{bundle.CreateEstablecimientoTitle_longitud}" />
+                        <p:outputLabel value="#{bundle.CreateEstablecimientoLabel_latitud}" for="latitud" />
+                        <p:inputText id="latitud" value="#{establecimientoController.selected.latitud}" title="#{bundle.CreateEstablecimientoTitle_latitud}" />
+                        <p:outputLabel value="#{bundle.CreateEstablecimientoLabel_mesas}" for="mesas" />
+                        <p:inputText id="mesas" value="#{establecimientoController.selected.mesas}" title="#{bundle.CreateEstablecimientoTitle_mesas}" required="true" requiredMessage="#{bundle.CreateEstablecimientoRequiredMessage_mesas}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{establecimientoController.create}" value="#{bundle.Save}" update="display,:EstablecimientoListForm:datalist,:growl" oncomplete="handleSubmit(args,'EstablecimientoCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="EstablecimientoCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

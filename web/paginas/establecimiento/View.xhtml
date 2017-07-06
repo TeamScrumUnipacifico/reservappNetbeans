@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EstablecimientoViewDlg" widgetVar="EstablecimientoViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewEstablecimientoTitle}">
+            <h:form id="EstablecimientoViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{establecimientoController.selected != null}">
+                        <h:outputText value="#{bundle.ViewEstablecimientoLabel_codigoEstablecimiento}"/>
+                        <h:outputText value="#{establecimientoController.selected.codigoEstablecimiento}" title="#{bundle.ViewEstablecimientoTitle_codigoEstablecimiento}"/>
+                        <h:outputText value="#{bundle.ViewEstablecimientoLabel_nombre}"/>
+                        <h:outputText value="#{establecimientoController.selected.nombre}" title="#{bundle.ViewEstablecimientoTitle_nombre}"/>
+                        <h:outputText value="#{bundle.ViewEstablecimientoLabel_nit}"/>
+                        <h:outputText value="#{establecimientoController.selected.nit}" title="#{bundle.ViewEstablecimientoTitle_nit}"/>
+                        <h:outputText value="#{bundle.ViewEstablecimientoLabel_direccion}"/>
+                        <h:outputText value="#{establecimientoController.selected.direccion}" title="#{bundle.ViewEstablecimientoTitle_direccion}"/>
+                        <h:outputText value="#{bundle.ViewEstablecimientoLabel_correo}"/>
+                        <h:outputText value="#{establecimientoController.selected.correo}" title="#{bundle.ViewEstablecimientoTitle_correo}"/>
+                        <h:outputText value="#{bundle.ViewEstablecimientoLabel_telefono}"/>
+                        <h:outputText value="#{establecimientoController.selected.telefono}" title="#{bundle.ViewEstablecimientoTitle_telefono}"/>
+                        <h:outputText value="#{bundle.ViewEstablecimientoLabel_longitud}"/>
+                        <h:outputText value="#{establecimientoController.selected.longitud}" title="#{bundle.ViewEstablecimientoTitle_longitud}"/>
+                        <h:outputText value="#{bundle.ViewEstablecimientoLabel_latitud}"/>
+                        <h:outputText value="#{establecimientoController.selected.latitud}" title="#{bundle.ViewEstablecimientoTitle_latitud}"/>
+                        <h:outputText value="#{bundle.ViewEstablecimientoLabel_mesas}"/>
+                        <h:outputText value="#{establecimientoController.selected.mesas}" title="#{bundle.ViewEstablecimientoTitle_mesas}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="EstablecimientoViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

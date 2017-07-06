@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="OrdenEditDlg" widgetVar="OrdenEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditOrdenTitle}">
+            <h:form id="OrdenEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{ordenController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditOrdenLabel_codigoOrden}" for="codigoOrden" />
+                        <p:inputText id="codigoOrden" value="#{ordenController.selected.codigoOrden}" title="#{bundle.EditOrdenTitle_codigoOrden}" required="true" requiredMessage="#{bundle.EditOrdenRequiredMessage_codigoOrden}"/>
+                        <p:outputLabel value="#{bundle.EditOrdenLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{ordenController.selected.nombre}" title="#{bundle.EditOrdenTitle_nombre}" required="true" requiredMessage="#{bundle.EditOrdenRequiredMessage_nombre}"/>
+                        <p:outputLabel value="#{bundle.EditOrdenLabel_precio}" for="precio" />
+                        <p:inputText id="precio" value="#{ordenController.selected.precio}" title="#{bundle.EditOrdenTitle_precio}" required="true" requiredMessage="#{bundle.EditOrdenRequiredMessage_precio}"/>
+                        <p:outputLabel value="#{bundle.EditOrdenLabel_descripcion}" for="descripcion" />
+                        <p:inputText id="descripcion" value="#{ordenController.selected.descripcion}" title="#{bundle.EditOrdenTitle_descripcion}" />
+                        <p:outputLabel value="#{bundle.EditOrdenLabel_imagen}" for="imagen" />
+                        <p:inputText id="imagen" value="#{ordenController.selected.imagen}" title="#{bundle.EditOrdenTitle_imagen}" />
+                        <p:outputLabel value="#{bundle.EditOrdenLabel_estado}" for="estado" />
+                        <p:inputText id="estado" value="#{ordenController.selected.estado}" title="#{bundle.EditOrdenTitle_estado}" />
+                        <p:outputLabel value="#{bundle.EditOrdenLabel_menuCodigoMenu}" for="menuCodigoMenu" />
+                        <p:selectOneMenu id="menuCodigoMenu" value="#{ordenController.selected.menuCodigoMenu}" required="true" requiredMessage="#{bundle.EditOrdenRequiredMessage_menuCodigoMenu}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{menuController.itemsAvailableSelectOne}"
+                                           var="menuCodigoMenuItem"
+                                           itemValue="#{menuCodigoMenuItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditOrdenLabel_reservaCodigoReserva}" for="reservaCodigoReserva" />
+                        <p:selectOneMenu id="reservaCodigoReserva" value="#{ordenController.selected.reservaCodigoReserva}" required="true" requiredMessage="#{bundle.EditOrdenRequiredMessage_reservaCodigoReserva}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{reservaController.itemsAvailableSelectOne}"
+                                           var="reservaCodigoReservaItem"
+                                           itemValue="#{reservaCodigoReservaItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{ordenController.update}" value="#{bundle.Save}" update="display,:OrdenListForm:datalist,:growl" oncomplete="handleSubmit(args, 'OrdenEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="OrdenEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
